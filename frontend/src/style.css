@@ -1,0 +1,294 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+/* 全局样式，设置字体、行高、字体权重、字体平滑 */
+:root {
+  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+  /* 字体平滑 */  
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+/* 全局样式，设置body的外边距为0，最小宽度为320px，最小高度为100vh */
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+}
+/* 全局样式，设置id为app的元素宽度为100%，高度为100% */
+#app {
+  width: 100%;
+  height: 100%;
+}
+
+/* 暗色主题样式 */
+.dark-theme {
+  /* 背景颜色 */
+  --bg-primary: #1a1a1a;
+  --bg-secondary: #2d2d2d;
+  --bg-tertiary: #3a3a3a;
+  --bg-card: rgba(45, 45, 45, 0.9);
+  
+  /* 文本颜色 */
+  --text-primary: #e0e0e0;
+  --text-secondary: #b0b0b0;
+  --text-tertiary: #808080;
+  
+  /* 边框颜色 */
+  --border-color: #404040;
+  
+  /* 主色调 */
+  --primary-color: #409eff;
+  --primary-hover: #66b1ff;
+  
+  /* 成功、警告、错误颜色 */
+  --success-color: #67c23a;
+  --warning-color: #e6a23c;
+  --danger-color: #f56c6c;
+}
+
+/* 暗色主题下的全局样式 */
+.dark-theme body {
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+}
+
+/* 暗色主题下的卡片样式 */
+.dark-theme .el-card {
+  background-color: var(--bg-card);
+  border-color: var(--border-color);
+}
+
+.dark-theme .el-card__header {
+  background-color: var(--bg-secondary);
+  border-bottom-color: var(--border-color);
+  color: var(--text-primary);
+}
+
+/* 暗色主题下的表单样式 */
+.dark-theme .el-form-item__label {
+  color: var(--text-secondary);
+}
+
+.dark-theme .el-input__wrapper {
+  background-color: var(--bg-tertiary);
+  border-color: var(--border-color);
+}
+
+.dark-theme .el-input__input {
+  color: var(--text-primary);
+}
+
+/* 暗色主题下的按钮样式 */
+.dark-theme .el-button--primary {
+  background-color: var(--primary-color);
+  border-color: var(--primary-color);
+}
+
+.dark-theme .el-button--primary:hover {
+  background-color: var(--primary-hover);
+  border-color: var(--primary-hover);
+}
+
+.dark-theme .el-button--default {
+  background-color: var(--bg-tertiary);
+  border-color: var(--border-color);
+  color: var(--text-primary);
+}
+
+/* 暗色主题下的菜单样式 */
+.dark-theme .sidebar {
+  background-color: var(--bg-secondary);
+  border-right-color: var(--border-color);
+}
+
+.dark-theme .sidebar-header {
+  background: linear-gradient(rgba(64, 158, 255, 0.2), rgba(64, 158, 255, 0.1));
+}
+
+.dark-theme .sidebar-menu :deep(.el-menu-item) {
+  color: var(--text-secondary);
+}
+
+.dark-theme .sidebar-menu :deep(.el-menu-item:hover),
+.dark-theme .sidebar-menu :deep(.el-menu-item.is-active) {
+  color: var(--text-primary);
+  background-color: rgba(64, 158, 255, 0.2);
+}
+
+.dark-theme .sidebar-menu :deep(.el-sub-menu__title) {
+  color: var(--text-secondary);
+}
+
+.dark-theme .sidebar-menu :deep(.el-sub-menu__title:hover) {
+  color: var(--text-primary);
+  background-color: rgba(64, 158, 255, 0.2);
+}
+
+.dark-theme .sidebar-menu :deep(.el-sub-menu .el-menu) {
+  background-color: var(--bg-tertiary) !important;
+}
+
+/* 暗色主题下的导航栏样式 */
+.dark-theme .navbar {
+  background-color: rgba(45, 45, 45, 0.9);
+  border-bottom-color: var(--border-color);
+}
+
+.dark-theme .navbar-left h3 {
+  color: var(--text-primary);
+}
+
+.dark-theme .user-name {
+  color: var(--text-primary);
+}
+
+/* 暗色主题下的主内容区域样式 */
+.dark-theme .main-content {
+  background-color: rgba(45, 45, 45, 0.9);
+  border-left-color: var(--border-color);
+}
+
+/* 暗色主题下的表格样式 */
+.dark-theme :deep(.el-table) {
+  background-color: var(--bg-card);
+  border-color: var(--border-color);
+}
+
+.dark-theme :deep(.el-table th) {
+  background-color: var(--bg-secondary);
+  color: var(--text-secondary);
+  border-bottom-color: var(--border-color);
+}
+
+.dark-theme :deep(.el-table td) {
+  color: var(--text-primary);
+  border-bottom-color: var(--border-color);
+}
+
+.dark-theme :deep(.el-table tr:hover) {
+  background-color: rgba(64, 158, 255, 0.1);
+}
+
+/* 暗色主题下的下拉菜单样式 */
+.dark-theme :deep(.el-dropdown-menu) {
+  background-color: var(--bg-tertiary);
+  border-color: var(--border-color);
+}
+
+.dark-theme :deep(.el-dropdown-item) {
+  color: var(--text-primary);
+}
+
+.dark-theme :deep(.el-dropdown-item:hover) {
+  background-color: rgba(64, 158, 255, 0.2);
+}
+
+/* 暗色主题下的对话框样式 */
+.dark-theme .el-dialog {
+  background-color: var(--bg-card);
+  border-color: var(--border-color);
+}
+
+.dark-theme .el-dialog__header {
+  background-color: var(--bg-secondary);
+  border-bottom-color: var(--border-color);
+}
+
+.dark-theme .el-dialog__title {
+  color: var(--text-primary);
+}
+
+/* 暗色主题下的标签样式 */
+.dark-theme .el-tag {
+  background-color: var(--bg-tertiary);
+  border-color: var(--border-color);
+  color: var(--text-secondary);
+}
+
+/* 暗色主题下的分页样式 */
+.dark-theme :deep(.el-pagination button) {
+  background-color: var(--bg-tertiary);
+  border-color: var(--border-color);
+  color: var(--text-primary);
+}
+
+.dark-theme :deep(.el-pagination__sizes .el-input__wrapper) {
+  background-color: var(--bg-tertiary);
+  border-color: var(--border-color);
+}
+
+/* 暗色主题下的开关样式 */
+.dark-theme .el-switch__core {
+  background-color: var(--bg-tertiary);
+  border-color: var(--border-color);
+}
+
+.dark-theme .el-switch.is-checked .el-switch__core {
+  background-color: var(--primary-color);
+  border-color: var(--primary-color);
+}
+
+/* 暗色主题下的滑块样式 */
+.dark-theme .el-slider__runway {
+  background-color: var(--bg-tertiary);
+}
+
+.dark-theme .el-slider__bar {
+  background-color: var(--primary-color);
+}
+
+.dark-theme .el-slider__button {
+  border-color: var(--primary-color);
+}
+
+/* 暗色主题下的描述列表样式 */
+.dark-theme .el-descriptions {
+  background-color: var(--bg-card);
+  border-color: var(--border-color);
+}
+
+.dark-theme .el-descriptions__label {
+  color: var(--text-secondary);
+  border-right-color: var(--border-color);
+  border-bottom-color: var(--border-color);
+}
+
+.dark-theme .el-descriptions__content {
+  color: var(--text-primary);
+  border-bottom-color: var(--border-color);
+}
+
+/* 暗色主题下的选项卡样式 */
+.dark-theme .el-tabs__header {
+  border-bottom-color: var(--border-color);
+}
+
+.dark-theme .el-tabs__nav-wrap::after {
+  background-color: var(--border-color);
+}
+
+.dark-theme .el-tabs__item {
+  color: var(--text-secondary);
+}
+
+.dark-theme .el-tabs__item.is-active {
+  color: var(--primary-color);
+}
+
+.dark-theme .el-tabs__active-bar {
+  background-color: var(--primary-color);
+}
+
+/* 暗色主题下的上传组件样式 */
+.dark-theme .el-upload-dragger {
+  border-color: var(--border-color);
+  background-color: var(--bg-tertiary);
+}
+
+.dark-theme .el-upload-dragger:hover {
+  border-color: var(--primary-color);
+}
