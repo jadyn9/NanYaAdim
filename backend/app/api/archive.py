@@ -237,8 +237,9 @@ def create_archive(
 
 @router.get("", response_model=List[ArchiveSchema])
 def get_archives(
-    skip: int = 0,
-    limit: int = 100,
+    page: int = 1,
+    page_size: int = 10,
+    name: str = None,
     category_id: int = None,
     db: Session = Depends(get_db),
     current_user: User = Depends(get_current_active_user)
@@ -247,8 +248,9 @@ def get_archives(
     获取档案列表
     
     Args:
-        skip: 跳过的记录数
-        limit: 返回的最大记录数
+        page: 页码，从1开始
+        page_size: 每页记录数
+        name: 档案名称，用于筛选
         category_id: 档案分类ID，用于筛选
         db: 数据库会话
         current_user: 当前活跃用户
@@ -256,11 +258,19 @@ def get_archives(
     Returns:
         档案列表
     """
+    # 计算跳过的记录数
+    skip = (page - 1) * page_size
+    limit = page_size
+    
     query = select(Archive)
     
     # 如果指定了分类，筛选该分类下的档案
     if category_id:
         query = query.where(Archive.category_id == category_id)
+    
+    # 如果指定了名称，筛选包含该名称的档案
+    if name:
+        query = query.where(Archive.title.contains(name))
     
     result = db.execute(query.offset(skip).limit(limit))
     archives = result.scalars().all()

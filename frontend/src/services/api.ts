@@ -1,7 +1,7 @@
 // API服务文件，处理与后端的通信
 
 // API基础URL
-const API_BASE_URL = 'http://localhost:8000'
+const API_BASE_URL = 'http://localhost:8001'
 
 // 请求超时时间
 const REQUEST_TIMEOUT = 30000
@@ -71,12 +71,16 @@ class ApiService {
   }
   
   // POST请求
-  async post<T>(url: string, data?: any): Promise<T> {
+  async post<T>(url: string, data?: any, formData?: boolean): Promise<T> {
     try {
+      const headers = formData ? {
+        'Authorization': getHeaders()['Authorization']
+      } : getHeaders();
+      
       const response = await fetch(`${API_BASE_URL}${url}`, {
         method: 'POST',
-        headers: getHeaders(),
-        body: data ? JSON.stringify(data) : undefined,
+        headers: headers,
+        body: formData && data ? new URLSearchParams(data as Record<string, string>) : data ? JSON.stringify(data) : undefined,
         signal: AbortSignal.timeout(REQUEST_TIMEOUT)
       })
       
@@ -233,7 +237,7 @@ export const knowledgeApi = {
 export const authApi = {
   // 登录
   login: (data: { username: string; password: string }) => {
-    return apiService.post('/api/auth/login', data)
+    return apiService.post('/api/auth/login', data, true)
   },
   
   // 注册

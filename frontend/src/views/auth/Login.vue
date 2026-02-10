@@ -18,74 +18,90 @@
     </div>
     <!-- 登录内容区域 -->
     <div class="login-content">
-      <!-- 登录表单包装器 -->
-      <div class="login-form-wrapper">
-        <!-- 登录logo和标题 -->
-        <div class="login-logo">
-          <h1 class="text-2xl font-bold">南雅医院</h1>
-          <p class="text-gray-600">企业后台管理系统</p>
+      <!-- 左侧文字区域 -->
+      <div class="login-text-section">
+        <div class="text-content">
+  
+          <div class="mission-statement">
+            <p>致力于解决医院内部需求和数据整合</p>
+            <p>好的创意需求,请联系信息科反馈</p>
+          </div>
         </div>
-        <!-- 登录表单 -->
-        <el-form
-          :model="loginForm"
-          :rules="loginRules"
-          ref="loginFormRef"
-          class="login-form"
-          @keyup.enter="login"
-        >
-          <!-- 用户名输入框 -->
-          <el-form-item prop="username">
-            <el-input
-              v-model="loginForm.username"
-              placeholder="用户名"
-              :prefix-icon="User"
-              size="large"
-              class="form-input"
-            ></el-input>
-          </el-form-item>
-          <!-- 密码输入框 -->
-          <el-form-item prop="password">
-            <el-input
-              v-model="loginForm.password"
-              type="password"
-              placeholder="密码"
-              :prefix-icon="Lock"
-              show-password
-              size="large"
-              class="form-input"
-            ></el-input>
-          </el-form-item>
-          <!-- 记住我和忘记密码 -->
-          <el-form-item>
-            <div class="form-footer">
-              <el-checkbox v-model="loginForm.remember" size="large">
-                记住我
-                </el-checkbox>
-              <el-link type="primary" underline="never" class="forgot-password">
-                忘记密码？
+      </div>
+      <!-- 右侧登录表单区域 -->
+      <div class="login-form-section">
+        <!-- 登录表单包装器 -->
+        <div class="login-form-wrapper">
+          <!-- 登录logo和标题，以及版本号 -->
+          <div class="login-logo">
+            <h1 class="text-2xl font-bold">南雅医院</h1>
+            <span class="text-sm text-gray-200 ml-2">版本：v1.0.0</span>
+            <p class="text-gray-600">企业后台管理系统</p>
+          </div>
+          <!-- 登录表单 -->
+          <el-form
+            :model="loginForm"
+            :rules="loginRules"
+            ref="loginFormRef"
+            class="login-form"
+            @keyup.enter="login"
+          >
+            <!-- 用户名输入框 -->
+            <el-form-item prop="username">
+              <el-input
+                v-model="loginForm.username"
+                placeholder="用户名"
+                :prefix-icon="User"
+                size="large"
+                class="form-input"
+              ></el-input>
+            </el-form-item>
+            <!-- 密码输入框 -->
+            <el-form-item prop="password">
+              <el-input
+                v-model="loginForm.password"
+                type="password"
+                placeholder="密码"
+                :prefix-icon="Lock"
+                show-password
+                size="large"
+                class="form-input"
+              ></el-input>
+            </el-form-item>
+            <!-- 记住我和忘记密码 -->
+            <el-form-item>
+              <div class="form-footer">
+                <el-checkbox v-model="loginForm.remember" size="large">
+                  记住我
+                  </el-checkbox>
+                <el-link type="primary" underline="never" class="forgot-password">
+                  忘记密码？
+                </el-link>
+              <!-- 版 -->
+              </div>
+            </el-form-item>
+            <!-- 登录按钮 -->
+            <el-form-item>
+              <el-button
+                type="primary"
+                class="login-btn"
+                :loading="loading"
+                @click="login"
+                size="large"
+              >
+                登录
+              </el-button>
+            </el-form-item>
+            <!-- 注册链接 -->
+            <el-form-item class="register-link">
+              <span>还没有账号？</span>
+              <el-link type="primary" underline="never" @click="goToRegister">
+                立即注册
               </el-link>
-            </div>
-          </el-form-item>
-          <!-- 登录按钮 -->
-          <el-form-item>
-            <el-button
-              type="primary"
-              class="login-btn"
-              :loading="loading"
-              @click="login"
-              size="large"
-            >
-              登录
-            </el-button>
-          </el-form-item>
-          <!-- 注册链接 -->
-          <el-form-item class="register-link">
-            <span>还没有账号？</span>
-            <el-link type="primary" underline="never" @click="goToRegister">
-              立即注册
-            </el-link>
-          </el-form-item>
-        </el-form>
+            </el-form-item>
+             <!-- 开发年份，联系邮箱，联系QQ，联系电话 -->  
+          </el-form>
+        </div>
       </div>
     </div>
   </div>
@@ -340,10 +356,6 @@ html, body {
   border-color: rgba(64, 64, 64, 0.5);
 }
 
-.dark-theme .el-input__input {
-  color: #e0e0e0;
-}
-
 .dark-theme .el-checkbox__label {
   color: #b0b0b0;
 }
@@ -354,6 +366,24 @@ html, body {
 
 .dark-theme .register-link .el-link {
   color: #409eff;
+}
+
+/* 暗色主题下的左侧文字 */
+.dark-theme .main-title {
+  color: #ffffff;
+}
+
+.dark-theme .subtitle {
+  color: #e0e0e0;
+}
+
+.dark-theme .mission-statement p {
+  /* 使命宣言文字颜色 */
+  color: #ffffff;
+  /* 文字阴影 */
+  text-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+  /* 添加字体大小; */
+  font-size: 25px;
 }
 
 /* 背景图案叠加层 */
@@ -369,13 +399,79 @@ html, body {
   opacity: 0.3;
 }
 
-/* 登录内容区域 */
+/* 登录内容区域 - 左右布局 */
 .login-content {
   position: relative;
   z-index: 1;
   width: 100%;
+  max-width: 1200px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 40px;
+  gap: 60px;
+}
+
+/* 左侧文字区域 */
+.login-text-section {
+  flex: 1;
+  max-width: 500px;
+}
+
+/* 文字内容 */
+.text-content {
+  color: white;
+}
+
+/* 主标题 */
+.main-title {
+  font-size: 42px;
+  font-weight: bold;
+  color: white;
+  margin: 0 0 16px 0;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+/* 副标题 */
+.subtitle {
+  font-size: 20px;
+  color: rgba(255, 255, 255, 0.9);
+  margin: 0 0 40px 0;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+/* 使命宣言 */
+.mission-statement {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border-radius: 12px;
+  padding: 30px;
+  border-left: 4px solid #ffffff;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+/* 使命宣言悬停效果 */
+.mission-statement:hover {
+  background: rgba(255, 255, 255, 0.15);
+  transform: translateX(10px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+}
+
+/* 使命宣言文字 */
+.mission-statement p {
+  font-size: 18px;
+  line-height: 1.6;
+  color: white;
+  margin: 0;
+  font-weight: 500;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+/* 右侧登录表单区域 */
+.login-form-section {
+  flex: 1;
   max-width: 480px;
-  padding: 0 20px;
 }
 
 /* 登录表单包装器 */
@@ -480,9 +576,62 @@ html, body {
 }
 
 /* 响应式设计 - 中等屏幕设备 */
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 1024px) {
   .login-content {
     max-width: 90%;
+    gap: 40px;
+  }
+  
+  .main-title {
+    font-size: 36px;
+  }
+  
+  .subtitle {
+    font-size: 18px;
+  }
+  
+  .mission-statement p {
+    font-size: 16px;
+  }
+  
+  .login-form-wrapper {
+    padding: 30px;
+  }
+}
+
+/* 响应式设计 - 平板设备 */
+@media screen and (max-width: 768px) {
+  .login-content {
+    flex-direction: column;
+    gap: 30px;
+    padding: 0 20px;
+  }
+  
+  .login-text-section {
+    max-width: 100%;
+    text-align: center;
+  }
+  
+  .login-form-section {
+    max-width: 100%;
+    width: 100%;
+  }
+  
+  .main-title {
+    font-size: 32px;
+  }
+  
+  .subtitle {
+    font-size: 16px;
+    margin-bottom: 30px;
+  }
+  
+  .mission-statement {
+    padding: 24px;
+  }
+  
+  .mission-statement p {
+    font-size: 15px;
   }
   
   .login-form-wrapper {
@@ -524,6 +673,22 @@ html, body {
   .form-input {
     height: 44px;
   }
+  
+  .main-title {
+    font-size: 28px;
+  }
+  
+  .subtitle {
+    font-size: 15px;
+  }
+  
+  .mission-statement {
+    padding: 20px;
+  }
+  
+  .mission-statement p {
+    font-size: 14px;
+  }
 }
 
 /* 响应式设计 - 手机设备 */
@@ -562,6 +727,23 @@ html, body {
     height: 42px;
     font-size: 15px;
   }
+  
+  .main-title {
+    font-size: 24px;
+  }
+  
+  .subtitle {
+    font-size: 14px;
+    margin-bottom: 24px;
+  }
+  
+  .mission-statement {
+    padding: 18px;
+  }
+  
+  .mission-statement p {
+    font-size: 13px;
+  }
 }
 
 /* 响应式设计 - 小屏手机设备 */
@@ -586,6 +768,22 @@ html, body {
     font-size: 13px;
     margin-top: 20px;
   }
+  
+  .main-title {
+    font-size: 20px;
+  }
+  
+  .subtitle {
+    font-size: 12px;
+  }
+  
+  .mission-statement {
+    padding: 16px;
+  }
+  
+  .mission-statement p {
+    font-size: 12px;
+  }
 }
 
 /* 触摸设备优化 */
@@ -599,6 +797,11 @@ html, body {
   .login-btn:hover {
     transform: none;
     box-shadow: 0 4px 16px rgba(102, 126, 234, 0.4);
+  }
+  
+  .mission-statement:hover {
+    transform: none;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
   }
   
   /* 增大触摸目标 */

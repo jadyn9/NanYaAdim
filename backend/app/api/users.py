@@ -73,7 +73,6 @@ def get_users(
 ) -> List[UserSchema]:
     """
     获取用户列表
-    
     Args:
         skip: 跳过的记录数
         limit: 返回的最大记录数
