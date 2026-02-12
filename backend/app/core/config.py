@@ -5,7 +5,7 @@ from typing import Optional
 class Settings(BaseSettings):
     """应用配置类"""
     # 应用基本信息
-    APP_NAME: str = "Enterprise Backend System"
+    APP_NAME: str = "南雅医院后端系统"
     APP_VERSION: str = "1.0.0"
     DEBUG: bool = True
     
